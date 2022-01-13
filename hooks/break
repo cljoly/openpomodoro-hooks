@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -xo pipefail
+
+notify-send -u critical "🍅 break"
+
+ps -C mako >/dev/null
+if [[ $? -eq 0 ]]; then
+    makoctl set-mode normal
+fi
+dunst_pid=$(pgrep dunst)
+if [[ $? -eq 0 ]]; then
+    kill -SIGUSR2 $dunst_pid
+fi
+
+cmus-remote -s || echo "Error with cmus"

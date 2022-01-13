@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -xo pipefail
+
+notify-send -u critical "🍅 start"
+sleep 2
+
+ps -C mako >/dev/null
+if [[ $? -eq 0 ]]; then
+    makoctl set-mode do-not-disturb
+fi
+dunst_pid=$(pgrep dunst)
+if [[ $? -eq 0 ]]; then
+    kill -SIGUSR1 $dunst_pid
+fi
+
+cmus-remote -f ~/Sync/mynoise_noise_colors/11_Ocean\ In\ Pink.opus || echo "Error with cmus"
+cmus-remote -C "set repeat_current=true" || echo "Error with cmus"
