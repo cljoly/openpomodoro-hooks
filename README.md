@@ -1,4 +1,4 @@
-# openpomodoro-hooks
+# 🪝 Openpomodoro Hooks
 
 Hooks I use with [open-pomodoro cli][cli]. It is mostly oriented toward a sway/i3 desktop environment and text based programs.
 
