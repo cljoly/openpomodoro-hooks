@@ -5,7 +5,7 @@ Hooks I use with [open-pomodoro cli][cli]. It is mostly oriented toward a sway/i
 ## Features
 
 * Silences notifications (do not disturb mode) with [mako][] and [dunst][].
-    * Also supports an arbitrary script, to integrate with other notification daemons. If `~/.bin/dnd_toggle` is an executable file, it will be run, instead of communicating with mako or dunst.
+    * Also supports an arbitrary script, to integrate with other notification daemons. If `~/.bin/dnd_toggle` is an executable file, it will be run (passing it `on` or `off`), instead of communicating with mako or dunst.
 * Pause and start the current player. If [cmus][] is in use, it will pause and start it instead of any other player.
 
 ## Installation
