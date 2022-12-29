@@ -6,6 +6,6 @@ if [[ "${TRACE-0}" == "1" ]]; then
 fi
 cd "$(dirname "$0")"
 
-notify-send -u critical "🍅 break"
+notify-send -u critical "🍅 start break"
 
 playerctl -p cmus,%any pause

@@ -6,7 +6,7 @@ if [[ "${TRACE-0}" == "1" ]]; then
 fi
 cd "$(dirname "$0")"
 
-notify-send -u critical "$(pomodoro status --format "🍅 %c ended")" "$(pomodoro status --format "%d")"
+notify-send -u critical "🍅 ended" "Last pomodoro: $(pomodoro history -o json | jq -r ".pomodoros[-1].description")"
 
 if test -f ~/.bin/dnd_toggle && test -x ~/.bin/dnd_toggle ; then
     ~/.bin/dnd_toggle off

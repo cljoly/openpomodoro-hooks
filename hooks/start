@@ -6,7 +6,7 @@ if [[ "${TRACE-0}" == "1" ]]; then
 fi
 cd "$(dirname "$0")"
 
-notify-send "$(pomodoro status --format "🍅 %c started")" "$(pomodoro status --format "%d")"
+notify-send "$(pomodoro status --format "🍅 %c: started")" "$(pomodoro status --format "%d")"
 
 playerctl -p cmus,%any play
 if test "$(playerctl -p cmus,%any status)" != "Playing"; then
