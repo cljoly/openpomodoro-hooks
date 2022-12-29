@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
-set -xo pipefail
+set -xo pipefail nounset
+
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
+cd "$(dirname "$0")"
 
 notify-send -u critical "🍅 break"
 
@@ -9,7 +14,7 @@ if [[ $? -eq 0 ]]; then
 fi
 dunst_pid=$(pgrep dunst)
 if [[ $? -eq 0 ]]; then
-    kill -SIGUSR2 $dunst_pid
+    kill -SIGUSR2 "$dunst_pid"
 fi
 
 cmus-remote -s || echo "Error with cmus"
