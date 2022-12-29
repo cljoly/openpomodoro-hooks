@@ -6,10 +6,16 @@ if [[ "${TRACE-0}" == "1" ]]; then
 fi
 cd "$(dirname "$0")"
 
-notify-send -u critical "$(pomodoro status --format "🍅 %c started")" "$(pomodoro status --format "%d")"
-# Wait for the notification to be sent before going in DND mode
-sleep 2
+notify-send "$(pomodoro status --format "🍅 %c started")" "$(pomodoro status --format "%d")"
 
+playerctl -p cmus,%any play
+if test "$(playerctl -p cmus,%any status)" != "Playing"; then
+    notify-send "🍅 ⚠️" "Couldn’t start playing anything"
+fi
+playerctl -p cmus,%any loop Playlist
+
+# Wait for the notifications to be sent before going in DND mode
+sleep 2
 if test -f ~/.bin/dnd_toggle && test -x ~/.bin/dnd_toggle ; then
     ~/.bin/dnd_toggle on
 else
@@ -22,6 +28,3 @@ else
         kill -SIGUSR1 "$dunst_pid"
     fi
 fi
-
-cmus-remote -f ~/Sync/mynoise_noise_colors/11_Ocean\ In\ Pink.opus || echo "Error with cmus"
-cmus-remote -C "set repeat_current=true" || echo "Error with cmus"

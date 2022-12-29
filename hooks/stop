@@ -21,4 +21,4 @@ else
     fi
 fi
 
-cmus-remote -s || echo "Error with cmus"
+playerctl -p cmus,%any pause
