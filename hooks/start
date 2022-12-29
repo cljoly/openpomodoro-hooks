@@ -7,15 +7,20 @@ fi
 cd "$(dirname "$0")"
 
 notify-send -u critical "$(pomodoro status --format "🍅 %c started")" "$(pomodoro status --format "%d")"
+# Wait for the notification to be sent before going in DND mode
 sleep 2
 
-ps -C mako >/dev/null
-if [[ $? -eq 0 ]]; then
-    makoctl set-mode do-not-disturb
-fi
-dunst_pid=$(pgrep dunst)
-if [[ $? -eq 0 ]]; then
-    kill -SIGUSR1 "$dunst_pid"
+if test -f ~/.bin/dnd_toggle && test -x ~/.bin/dnd_toggle ; then
+    ~/.bin/dnd_toggle on
+else
+    ps -C mako >/dev/null
+    if [[ $? -eq 0 ]]; then
+        makoctl set-mode do-not-disturb
+    fi
+    dunst_pid=$(pgrep dunst)
+    if [[ $? -eq 0 ]]; then
+        kill -SIGUSR1 "$dunst_pid"
+    fi
 fi
 
 cmus-remote -f ~/Sync/mynoise_noise_colors/11_Ocean\ In\ Pink.opus || echo "Error with cmus"
