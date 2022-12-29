@@ -14,7 +14,7 @@ If the following programs are present, the hook will opportunisticaly start and 
 
 * silences notifications (do not disturb mode) with [mako][] and [dunst][].
     * also supports an arbitrary script, to integrate with other notification daemons. If `~/.bin/dnd_toggle` is an executable file, it will be run, instead of communicating with mako or dunst.
-* make [cmus][] play a song for the duration of the pomodoro (I use [mynoise sounds][mynoise]). If thi
+* pause and start the current player. If [cmus][] is in use, it will pause and start it instead of any other player.
 
 [cli]: https://github.com/open-pomodoro/openpomodoro-cli
 [mako]: https://wayland.emersion.fr/mako/
