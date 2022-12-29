@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -xo pipefail
 
-notify-send -u critical "🍅 start"
+notify-send -u critical "$(pomodoro status --format "🍅 %c started")" "$(pomodoro status --format "%d")"
 sleep 2
 
 ps -C mako >/dev/null
