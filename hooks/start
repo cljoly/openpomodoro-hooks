@@ -6,16 +6,14 @@ if [[ "${TRACE-0}" == "1" ]]; then
 fi
 cd "$(dirname "$0")"
 
-notify-send "$(pomodoro status --format "🍅 %c: started")" "$(pomodoro status --format "%d")"
-
 playerctl -p cmus,%any play
 if test "$(playerctl -p cmus,%any status)" != "Playing"; then
     notify-send "🍅 ⚠️" "Couldn’t start playing anything"
 fi
 playerctl -p cmus,%any loop Playlist
 
-# Wait for the notifications to be sent before going in DND mode
-sleep 2
+notify-send --wait -A "pomodoro cancel=Cancel" -A "pomodoro finish=Finish" "$(pomodoro status --format "🍅 %c: Started")" "$(pomodoro status --format "%d")"
+
 if test -f ~/.bin/dnd_toggle && test -x ~/.bin/dnd_toggle ; then
     ~/.bin/dnd_toggle on
 else
