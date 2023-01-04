@@ -21,4 +21,4 @@ fi
 
 playerctl -p cmus,%any pause
 
-notify-send --wait "pomodoro repeat=Repeat" -u critical "🍅 ended" "Last pomodoro: $(pomodoro history -o json | jq -r ".pomodoros[-1].description")"
+notify-send --wait -A "pomodoro repeat=Repeat" -u critical "🍅 ended" "Last pomodoro: $(pomodoro history -o json | jq -r ".pomodoros[-1].description")"
